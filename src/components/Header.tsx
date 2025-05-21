@@ -16,8 +16,8 @@ const Header = () => {
             <Link href="#personas" className="text-sm text-foreground/70 hover:text-foreground">
               Personas
             </Link>
-            <Link href="#roadmap" className="text-sm text-foreground/70 hover:text-foreground">
-              Roadmap
+            <Link href="/how-it-works" className="text-sm text-foreground/70 hover:text-foreground">
+              How it works
             </Link>
             <Link href="#pricing" className="text-sm text-foreground/70 hover:text-foreground">
               Pricing

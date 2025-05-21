@@ -103,6 +103,8 @@ const Hero = () => {
 
   return (
     <section className="flex flex-col items-center py-10 bg-neutral-900 min-h-screen">
+      {/* Extra Spacing Above Hero */}
+      <div className="h-8 md:h-12" />
       {/* Hero Intro Section ABOVE Chrome Tab */}
       <div className="flex flex-col items-center text-center space-y-4 mb-8 w-full">
         <div className="flex items-center space-x-2 mb-4 justify-center">
@@ -110,11 +112,9 @@ const Hero = () => {
             {[1, 2, 3, 4, 5].map((i) => (
               <div
                 key={i}
-                className="inline-block h-8 w-8 rounded-full bg-neutral-800 ring-2 ring-neutral-700"
               />
             ))}
           </div>
-          <div className="text-sm text-neutral-400">1k+ career professionals</div>
         </div>
         <h1 className="text-5xl font-extrabold text-neutral-100 mb-2">Transform Your Career with AI</h1>
         <p className="text-xl text-neutral-400 mb-6">Let AI guide your journey with personalized skill development, mentorship, and job matching.</p>
@@ -144,15 +144,18 @@ const Hero = () => {
         {/* Dashboard Content */}
         <div className="p-8 bg-neutral-900">
           {/* Priority KPIs Row */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-6 gap-4 mb-6">
             <KPIBlock title="Weekly XP" value={320} accent="blue" subtext="XP earned this week" />
             <KPIBlock title="Skills Progressed" value={5} accent="blue" subtext="Skills improved" />
             <KPIBlock title="Streak" value="7 days" accent="yellow" subtext="Consecutive days" />
             <KPIBlock title="Badges Unlocked" value={12} accent="green" subtext="Badges unlocked" />
+            <KPIBlock title="Mentor Sessions" value={3} accent="purple" subtext="This month" />
+            <KPIBlock title="Job Views" value={28} accent="orange" subtext="Profile views" />
           </div>
           {/* Main Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="flex flex-col gap-8">
+          <div className="grid grid-cols-6 gap-4">
+            {/* Left Column */}
+            <div className="col-span-2 flex flex-col gap-4">
               <SectionBlock title="Career Roadmap">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="font-bold text-blue-500">Data Analyst</span>
@@ -173,7 +176,7 @@ const Hero = () => {
                 </div>
               </SectionBlock>
               <SectionBlock title="Skill Progress">
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {skills.map((skill) => (
                     <div key={skill.name}>
                       <div className="flex justify-between text-sm mb-1">
@@ -193,6 +196,9 @@ const Hero = () => {
                   ))}
                 </div>
               </SectionBlock>
+            </div>
+            {/* Middle Column */}
+            <div className="col-span-2 flex flex-col gap-4">
               <SectionBlock title="Learning Path Progress">
                 <div className="flex items-center gap-4">
                   {learningPath.map((step, idx) => (
@@ -216,6 +222,9 @@ const Hero = () => {
                   <button className="ml-auto bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 text-xs">Reply</button>
                 </div>
               </SectionBlock>
+            </div>
+            {/* Right Column */}
+            <div className="col-span-2 flex flex-col gap-4">
               <SectionBlock title="Job Matches">
                 <ul className="space-y-2">
                   {jobMatches.map((job, i) => (
@@ -230,66 +239,21 @@ const Hero = () => {
                   ))}
                 </ul>
               </SectionBlock>
-              <SectionBlock title="Personalized Tips">
-                <div className="flex items-center gap-2">
-                  <Star className="text-yellow-400" />
-                  <span className="text-neutral-200">{tips[tipIdx]}</span>
-                  <button onClick={() => setTipIdx((tipIdx + 1) % tips.length)} className="ml-2 text-blue-500 hover:underline text-xs">Next</button>
-                </div>
-              </SectionBlock>
-              <div className="flex gap-2">
-                <button onClick={() => setShowAskAI(true)} className="flex items-center gap-1 px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white font-semibold">
-                  <MessageCircle size={16} /> Ask AI
-                </button>
-                <button onClick={() => setShowCustomize(true)} className="flex items-center gap-1 px-4 py-2 rounded bg-neutral-700 hover:bg-neutral-800 text-neutral-100 font-semibold">
-                  <Settings size={16} /> Customize
-                </button>
-              </div>
-            </div>
-            <div className="flex flex-col gap-8">
               <SectionBlock title="Recent Achievements">
                 <ul className="text-lg flex flex-wrap gap-3">
                   {achievements.map((a) => <li key={a}>{a}</li>)}
                 </ul>
               </SectionBlock>
-              <SectionBlock title="Recommended Resources">
-                <ul className="space-y-1">
-                  {resources.map((r) => <li key={r} className="flex items-center gap-2"><ChevronRight className="h-4 w-4 text-blue-500" />{r}</li>)}
-                </ul>
-              </SectionBlock>
-              <SectionBlock title="Recent Activity">
-                <button
-                  aria-expanded={showActivity}
-                  aria-controls="activity-list"
-                  className="w-full text-left text-sm font-semibold text-neutral-100 flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-blue-600"
-                  onClick={() => setShowActivity((v) => !v)}
-                >
-                  Show Activity
-                  <span className={`transition-transform ml-2 ${showActivity ? "rotate-180" : ""}`}>▼</span>
-                </button>
-                {showActivity && (
-                  <ul id="activity-list" className="text-sm text-neutral-300 space-y-1 mt-2">
-                    {activity.map((a) => <li key={a} className="flex items-center gap-2"><MessageSquare className="h-4 w-4 text-blue-500" />{a}</li>)}
-                  </ul>
-                )}
-              </SectionBlock>
-              <SectionBlock title="Community Highlights">
-                <ul className="space-y-1">
-                  {community.map((c) => <li key={c} className="flex items-center gap-2"><User className="h-4 w-4 text-green-500" />{c}</li>)}
-                </ul>
-              </SectionBlock>
-              <SectionBlock title="Platform Features">
-                <ul className="space-y-1">
-                  <li>🤖 <span className="font-semibold">AI Mentor</span> — Personalized guidance</li>
-                  <li>📈 <span className="font-semibold">Skill Tracking</span> — Visualize growth</li>
-                  <li>🛣️ <span className="font-semibold">Learning Paths</span> — Curated journeys</li>
-                  <li>🗺️ <span className="font-semibold">Career Roadmap</span> — Plan your future</li>
-                  <li>🤝 <span className="font-semibold">Human Mentorship</span> — Real connections</li>
-                  <li>💼 <span className="font-semibold">Job Matching</span> — Find your fit</li>
-                </ul>
-                <a href="#features" className="mt-2 inline-block text-blue-500 text-xs hover:underline">See all features</a>
-              </SectionBlock>
             </div>
+          </div>
+          {/* Action Buttons Row */}
+          <div className="flex gap-4 mt-6">
+            <button onClick={() => setShowAskAI(true)} className="flex items-center gap-2 px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white font-semibold">
+              <MessageCircle size={16} /> Ask AI
+            </button>
+            <button onClick={() => setShowCustomize(true)} className="flex items-center gap-2 px-4 py-2 rounded bg-neutral-700 hover:bg-neutral-800 text-neutral-100 font-semibold">
+              <Settings size={16} /> Customize
+            </button>
           </div>
         </div>
       </div>
@@ -301,11 +265,11 @@ const Hero = () => {
 };
 
 const KPIBlock: FC<KPIBlockProps> = ({ title, value, accent, subtext }) => {
-  const color = accent === "blue" ? "text-blue-500" : accent === "green" ? "text-green-500" : accent === "yellow" ? "text-yellow-400" : "text-neutral-100";
+  const color = accent === "blue" ? "text-blue-500" : accent === "green" ? "text-green-500" : accent === "yellow" ? "text-yellow-400" : accent === "purple" ? "text-purple-500" : "text-orange-500";
   return (
     <div className="rounded-xl bg-neutral-800 border border-neutral-700 shadow p-4 flex flex-col items-center">
-      <div className={`text-lg font-bold mb-1 ${color}`}>{title}</div>
-      <div className={`text-3xl font-extrabold ${color}`}>{value}</div>
+      <div className={`text-lg font-extrabold mb-1 ${color}`}>{title}</div>
+      <div className={`text-3xl font-black ${color}`}>{value}</div>
       <div className="text-xs text-neutral-400 mt-1">{subtext}</div>
     </div>
   );
@@ -313,7 +277,7 @@ const KPIBlock: FC<KPIBlockProps> = ({ title, value, accent, subtext }) => {
 const SectionBlock: FC<SectionBlockProps> = ({ title, children }) => {
   return (
     <div className="rounded-xl bg-neutral-800 border border-neutral-700 shadow p-4">
-      <div className="text-lg font-bold text-neutral-100 mb-2">{title}</div>
+      <div className="text-xl font-extrabold text-neutral-100 mb-3 tracking-tight">{title}</div>
       {children}
     </div>
   );

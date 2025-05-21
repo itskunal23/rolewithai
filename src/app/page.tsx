@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import Personas from "@/components/Personas";
-import Roadmap from "@/components/Roadmap";
+import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
@@ -16,7 +16,7 @@ export default function HomePage() {
       <Hero />
       <Features />
       <Personas />
-      <Roadmap />
+      <HowItWorks />
       <Testimonials />
       <Pricing />
       <FAQ />
