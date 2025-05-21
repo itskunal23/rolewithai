@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import ClientBody from "./ClientBody";
+import { ThemeProvider } from "next-themes";
 
 export const metadata: Metadata = {
   title: "RoleWithAI - AI-Powered Career Development Platform",
@@ -16,9 +16,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body suppressHydrationWarning className="antialiased">
-        <ClientBody>{children}</ClientBody>
+    <html lang="en" suppressHydrationWarning>
+      <body className="antialiased">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={true}>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
