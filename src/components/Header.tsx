@@ -10,6 +10,9 @@ const Header = () => {
             <span className="text-xl font-bold">RoleWithAI</span>
           </Link>
           <nav className="hidden md:flex items-center space-x-6">
+            <Link href="/dashboard" className="text-sm text-foreground/70 hover:text-foreground">
+              Dashboard
+            </Link>
             <Link href="#features" className="text-sm text-foreground/70 hover:text-foreground">
               Features
             </Link>
