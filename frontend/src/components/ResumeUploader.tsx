@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 interface ResumeUploaderProps {
   onClose: () => void;
-  onAnalysisComplete?: (data: any) => void;
+  onAnalysisComplete?: (data: unknown) => void;
 }
 
 export function ResumeUploader({ onClose, onAnalysisComplete }: ResumeUploaderProps) {
@@ -86,9 +86,10 @@ export function ResumeUploader({ onClose, onAnalysisComplete }: ResumeUploaderPr
         setError("Please upload a PDF file. Text paste is not yet supported.");
         setIsAnalyzing(false);
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Resume upload error:', err);
-      setError(err.message || "Failed to analyze resume. Please ensure the backend is running and Ollama is available.");
+      const errorMessage = err instanceof Error ? err.message : "Failed to analyze resume. Please ensure the backend is running and Ollama is available.";
+      setError(errorMessage);
     } finally {
       setIsAnalyzing(false);
     }

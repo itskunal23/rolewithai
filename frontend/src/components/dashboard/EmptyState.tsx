@@ -8,9 +8,10 @@ import { Upload, Edit, FileText } from "lucide-react";
 interface EmptyStateProps {
   type: "profile" | "experience" | "skills" | "applications";
   onAction?: () => void;
+  message?: string;
 }
 
-export default function EmptyState({ type, onAction }: EmptyStateProps) {
+export default function EmptyState({ type, onAction, message }: EmptyStateProps) {
   const configs = {
     profile: {
       title: "Complete your profile",
@@ -52,7 +53,7 @@ export default function EmptyState({ type, onAction }: EmptyStateProps) {
           <Icon className="h-8 w-8 text-slate-400" />
         </div>
         <h3 className="text-lg font-semibold text-white mb-2">{config.title}</h3>
-        <p className="text-sm text-slate-400 mb-6 max-w-sm">{config.description}</p>
+        <p className="text-sm text-slate-400 mb-6 max-w-sm">{message || config.description}</p>
         {onAction && (
           <Button
             onClick={onAction}

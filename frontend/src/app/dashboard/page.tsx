@@ -54,9 +54,10 @@ export default function DashboardPage() {
         } else {
           setDashboardData(data);
         }
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error("Failed to load dashboard:", err);
-        setError(err.message || "Failed to load dashboard data");
+        const errorMessage = err instanceof Error ? err.message : "Failed to load dashboard data";
+        setError(errorMessage);
         setDashboardData(null);
       } finally {
         setLoading(false);
@@ -69,7 +70,7 @@ export default function DashboardPage() {
   }, [userId]);
 
   // Handle resume upload success
-  const handleResumeUploadSuccess = async (data: any) => {
+  const handleResumeUploadSuccess = async (data: unknown) => {
     setShowResumeUpload(false);
     // Reload dashboard after upload
     if (userId) {

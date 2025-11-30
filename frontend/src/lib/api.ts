@@ -257,7 +257,7 @@ export interface DashboardRecommendations {
     description: string;
     skills: string[];
   }>;
-  job_match_stats: Record<string, any>;
+  job_match_stats: Record<string, unknown>;
 }
 
 export interface DashboardResponse {
