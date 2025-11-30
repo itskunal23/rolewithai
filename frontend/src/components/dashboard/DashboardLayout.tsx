@@ -31,11 +31,11 @@ export default function DashboardLayout({
     <div className="min-h-screen bg-gradient-to-br from-[#0B0B0D] via-[#111214] to-[#0B0B0D]">
       <Header />
       <SubToolbar
-        onResumeUpload={onResumeUpload}
-        onJobDescription={onJobDescription}
-        onAskAI={onAskAI}
-        onSettings={onSettings}
-        notifications={notifications || {}}
+        onResumeUpload={onResumeUpload ?? (() => {})}
+        onJobDescription={onJobDescription ?? (() => {})}
+        onAskAI={onAskAI ?? (() => {})}
+        onSettings={onSettings ?? (() => {})}
+        notifications={notifications ?? { ai: 0, mentor: 0 }}
       />
       <main className="pt-32">
         <div className="max-w-7xl mx-auto px-4 lg:px-8 py-6">

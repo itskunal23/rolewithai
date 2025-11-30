@@ -7,10 +7,10 @@ import { Button } from "@/components/ui/button";
 import { Tooltip } from "@/components/ui/tooltip";
 
 interface SubToolbarProps {
-  onResumeUpload: () => void;
-  onJobDescription: () => void;
-  onAskAI: () => void;
-  onSettings: () => void;
+  onResumeUpload?: () => void;
+  onJobDescription?: () => void;
+  onAskAI?: () => void;
+  onSettings?: () => void;
   notifications?: {
     ai: number;
     mentor: number;
@@ -18,10 +18,10 @@ interface SubToolbarProps {
 }
 
 export function SubToolbar({
-  onResumeUpload,
-  onJobDescription,
-  onAskAI,
-  onSettings,
+  onResumeUpload = () => {},
+  onJobDescription = () => {},
+  onAskAI = () => {},
+  onSettings = () => {},
   notifications = { ai: 0, mentor: 0 }
 }: SubToolbarProps) {
   const [isSticky, setIsSticky] = useState(false);
